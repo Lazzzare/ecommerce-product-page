@@ -1,15 +1,30 @@
 import IconMenu from "../assets/icon-menu.svg";
 import Logo from "../assets/logo.svg";
-import Cart from "../assets/icon-cart.svg";
 import Avatar from "../assets/image-avatar.png";
 import Close from "../assets/icon-close.svg";
+import Delete from "../assets/icon-delete.svg";
+import BuyProduct from "../assets/image-product-1.jpg";
+import { AiOutlineShoppingCart } from "react-icons/ai";
+import { useState } from "react";
 
 interface Props {
   MobileMenu: boolean;
   setMobileMenu: (e: boolean) => void;
+  amount: number;
+  setAmount: (e: number) => void;
+  cartButton: (hasItems: boolean) => boolean;
+  cartButtonClicked: boolean;
+  setCartButtonClicked: (e: boolean) => void;
 }
 
-const Header = ({ MobileMenu, setMobileMenu }: Props) => {
+const Header = ({
+  MobileMenu,
+  setMobileMenu,
+  amount,
+  cartButton,
+  cartButtonClicked,
+}: Props) => {
+  const [cartMenu, setCartMenu] = useState(false);
   const menuItemsArray = ["Collections", "Men", "Women", "About", "Contact"];
   return (
     <>
@@ -31,22 +46,6 @@ const Header = ({ MobileMenu, setMobileMenu }: Props) => {
               className="lg:hidden cursor-pointer"
             />
           )}
-          {MobileMenu ? (
-            <div className="lg:hidden z-10 absolute left-0 top-0 w-[250px] h-screen bg-slate-300">
-              <ul className="mt-[90px] ml-6 flex flex-col gap-8">
-                {menuItemsArray.map((item, index) => {
-                  return (
-                    <li
-                      key={index}
-                      className="cursor-pointer text-[#1D2026] font-bold leading-6"
-                    >
-                      {item}
-                    </li>
-                  );
-                })}
-              </ul>
-            </div>
-          ) : null}
           <div className="flex flex-row items-center gap-x-14">
             <img src={Logo} alt="Logo" className="cursor-pointer" />
             <ul className="hidden lg:flex gap-8">
@@ -64,9 +63,74 @@ const Header = ({ MobileMenu, setMobileMenu }: Props) => {
           </div>
         </div>
         {/* RightSIde */}
-        <div className="flex flex-row items-center gap-5">
-          <img src={Cart} alt="CartIcon" />
-          <img src={Avatar} alt="Avatar" className="w-6 h-6 lg:w-12 lg:h-12" />
+        <div className="flex flex-row items-center gap-5 relative">
+          <AiOutlineShoppingCart
+            onClick={() => setCartMenu(!cartMenu)}
+            className="w-6 h-6 text-[#69707D] cursor-pointer"
+          />
+          {cartButtonClicked ? (
+            cartButton(amount > 0) ? (
+              <div className="absolute top-2 right-14 bg-[#FF7E1B] rounded-md text-[10px] font-bold text-white w-[19px] h-[13px] items-center flex justify-center">
+                {amount}
+              </div>
+            ) : null
+          ) : null}
+          {cartMenu ? (
+            <div className="cart_menu z-10 absolute lg:top-16 lg:-left-40 top-20 -left-[275px] w-[360px] h-[256px]">
+              <h2 className="p-6 text-[#1D2026] font-bold">Cart</h2>
+              <hr className="h-[1px] text-[#E4E9F2]" />
+              {cartButtonClicked ? (
+                cartButton(amount > 0) === true ? (
+                  <div className="p-4 items-center justify-center">
+                    <div className="flex flex-row">
+                      <img
+                        src={BuyProduct}
+                        alt="BuyProduct"
+                        className="w-[50px] h-[50px] rounded"
+                      />
+                      <div className="ml-4">
+                        <h2 className="text-[#69707D] leading-[26px]">
+                          Fall Limited Edition Sneakers
+                        </h2>
+                        <div className="flex flex-row gap-1">
+                          <h3 className="text-[#69707D] leading-[26px]">
+                            $125.00 x {amount}
+                          </h3>
+                          <h4 className="text-[#1D2026] font-bold leading-[26px]">
+                            $375.00
+                          </h4>
+                        </div>
+                      </div>
+                      <img
+                        src={Delete}
+                        alt="Delete"
+                        className="w-[14px] h-[16px] mt-4 ml-5 cursor-pointer"
+                      />
+                    </div>
+                  </div>
+                ) : (
+                  <h1
+                    className="absolute flex justify-center items-center mx-auto top-1/2 left-[30%]
+                  text-[#69707D] font-bold leading-7"
+                  >
+                    Your cart is empty.
+                  </h1>
+                )
+              ) : (
+                <h1
+                  className="absolute flex justify-center items-center mx-auto top-1/2 left-[30%]
+              text-[#69707D] font-bold leading-7"
+                >
+                  Your cart is empty.
+                </h1>
+              )}
+            </div>
+          ) : null}
+          <img
+            src={Avatar}
+            alt="Avatar"
+            className="w-6 h-6 lg:w-12 lg:h-12 hover:border-2 hover:border-[#FF7E1B] hover:rounded-full cursor-pointer"
+          />
         </div>
       </div>
       <hr className="hidden lg:flex max-w-[1110px] w-full mx-auto bg-black" />
