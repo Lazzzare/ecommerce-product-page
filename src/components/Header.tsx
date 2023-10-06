@@ -21,7 +21,7 @@ const Header = ({ MobileMenu, setMobileMenu }: Props) => {
               onClick={() => setMobileMenu(!MobileMenu)}
               src={Close}
               alt="Close"
-              className="lg:hidden cursor-pointer z-10"
+              className="lg:hidden cursor-pointer z-20"
             />
           ) : (
             <img
@@ -32,11 +32,14 @@ const Header = ({ MobileMenu, setMobileMenu }: Props) => {
             />
           )}
           {MobileMenu ? (
-            <div className="lg:hidden absolute left-0 top-0 w-[250px] h-screen bg-slate-300">
+            <div className="lg:hidden z-10 absolute left-0 top-0 w-[250px] h-screen bg-slate-300">
               <ul className="mt-[90px] ml-6 flex flex-col gap-8">
-                {menuItemsArray.map((item) => {
+                {menuItemsArray.map((item, index) => {
                   return (
-                    <li className="cursor-pointer text-[#1D2026] font-bold leading-6">
+                    <li
+                      key={index}
+                      className="cursor-pointer text-[#1D2026] font-bold leading-6"
+                    >
                       {item}
                     </li>
                   );
@@ -47,9 +50,12 @@ const Header = ({ MobileMenu, setMobileMenu }: Props) => {
           <div className="flex flex-row items-center gap-x-14">
             <img src={Logo} alt="Logo" className="cursor-pointer" />
             <ul className="hidden lg:flex gap-8">
-              {menuItemsArray.map((item) => {
+              {menuItemsArray.map((item, index) => {
                 return (
-                  <li className="cursor-pointer text-[#69707D] hover:text-[#1D2026] leading-6">
+                  <li
+                    key={index}
+                    className="cursor-pointer text-[#69707D] hover:text-[#1D2026] leading-6"
+                  >
                     {item}
                   </li>
                 );
