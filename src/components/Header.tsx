@@ -32,7 +32,7 @@ const Header = ({ MobileMenu, setMobileMenu }: Props) => {
             />
           )}
           {MobileMenu ? (
-            <div className="lg:hidden absolute left-0 top-0 w-[250px] h-screen bg-white">
+            <div className="lg:hidden absolute left-0 top-0 w-[250px] h-screen bg-slate-300">
               <ul className="mt-[90px] ml-6 flex flex-col gap-8">
                 {menuItemsArray.map((item) => {
                   return (
