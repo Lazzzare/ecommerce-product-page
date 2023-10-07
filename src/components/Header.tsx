@@ -21,8 +21,10 @@ const Header = ({
   MobileMenu,
   setMobileMenu,
   amount,
+  setAmount,
   cartButton,
   cartButtonClicked,
+  setCartButtonClicked,
 }: Props) => {
   const [cartMenu, setCartMenu] = useState(false);
   const menuItemsArray = ["Collections", "Men", "Women", "About", "Contact"];
@@ -76,6 +78,7 @@ const Header = ({
             ) : null
           ) : null}
           {cartMenu ? (
+            // CartMenu
             <div className="cart_menu z-10 absolute lg:top-16 lg:-left-40 top-20 -left-[275px] w-[360px] h-[256px]">
               <h2 className="p-6 text-[#1D2026] font-bold">Cart</h2>
               <hr className="h-[1px] text-[#E4E9F2]" />
@@ -97,7 +100,7 @@ const Header = ({
                             $125.00 x {amount}
                           </h3>
                           <h4 className="text-[#1D2026] font-bold leading-[26px]">
-                            $375.00
+                            {`${125 * amount}.00 $`}
                           </h4>
                         </div>
                       </div>
@@ -105,7 +108,23 @@ const Header = ({
                         src={Delete}
                         alt="Delete"
                         className="w-[14px] h-[16px] mt-4 ml-5 cursor-pointer"
+                        onClick={() => {
+                          setCartButtonClicked(!cartButton);
+                          setAmount(0);
+                        }}
                       />
+                    </div>
+                    <div className="items-center mx-auto flex justify-center mt-6">
+                      <button
+                        onClick={() => {
+                          alert(`You Buy ${amount} Sneakers Product`);
+                          setCartButtonClicked(false);
+                          setAmount(0);
+                        }}
+                        className="w-full bg-[#FF7E1B] rounded-[10px] text-white font-bold pt-[18px] pb-[18px] hover:bg-[#d37f3f]"
+                      >
+                        Checkout
+                      </button>
                     </div>
                   </div>
                 ) : (
