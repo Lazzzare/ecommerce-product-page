@@ -52,7 +52,7 @@ const TextContent = ({
             </h2>
           </div>
           <div className="flex flex-col lg:flex-row lg:gap-4 lg:items-center">
-            <div className="mt-7 w-full lg:w-[157px] h-[56px] bg-[#F6F8FD] rounded-[10px] flex flex-row items-center justify-between px-4">
+            <div className="mt-7 lg:mt-4 w-full lg:w-[157px] h-[56px] bg-[#F6F8FD] rounded-[10px] flex flex-row items-center justify-between px-4">
               <img
                 onClick={() => {
                   if (amount === 0) {
