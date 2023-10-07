@@ -39,7 +39,7 @@ const Header = ({
               onClick={() => setMobileMenu(!MobileMenu)}
               src={Close}
               alt="Close"
-              className="lg:hidden cursor-pointer z-20"
+              className="lg:hidden cursor-pointer z-50"
             />
           ) : (
             <img
