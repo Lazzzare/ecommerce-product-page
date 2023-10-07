@@ -5,6 +5,7 @@ import Product1 from "../assets/image-product-1.jpg";
 import Product2 from "../assets/image-product-2.jpg";
 import Product3 from "../assets/image-product-3.jpg";
 import Product4 from "../assets/image-product-4.jpg";
+import Close from "../assets/icon-close.svg";
 import { motion } from "framer-motion";
 import TextContent from "./TextContent";
 
@@ -93,26 +94,40 @@ const ImageContent = ({
                     alt="image"
                     className="w-[550px] h-[550px]"
                   />
+                  <div className="absolute top-4 right-4">
+                    <img
+                      onClick={() => setFullScreenImage(!fullScreenImage)}
+                      src={Close}
+                      alt="Close"
+                      className="w-5 h-5 cursor-pointer"
+                    />
+                  </div>
                 </div>
               ) : null}
             </div>
           ))}
           {/* SubImages */}
-          <div className="flex flex-row gap-x-7">
-            {productImages.map((image, index) => (
-              <img
-                key={index}
-                src={image}
-                alt={`Product${index + 1}`}
-                className={`w-[88px] h-[88px] rounded-lg cursor-pointer ${
-                  imageIndex === index
-                    ? "border-2 border-[#FF7E1B] opacity-50"
-                    : null
-                }`}
-                onClick={() => handleImageChange(index)}
-              />
-            ))}
-          </div>
+          <motion.div
+            initial={{ opacity: 0, x: -200 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1.5 }}
+          >
+            <div className="flex flex-row gap-x-7">
+              {productImages.map((image, index) => (
+                <img
+                  key={index}
+                  src={image}
+                  alt={`Product${index + 1}`}
+                  className={`w-[88px] h-[88px] rounded-lg cursor-pointer ${
+                    imageIndex === index
+                      ? "border-2 border-[#FF7E1B] opacity-50"
+                      : null
+                  }`}
+                  onClick={() => handleImageChange(index)}
+                />
+              ))}
+            </div>
+          </motion.div>
         </div>
       </motion.div>
       {/* TextContent */}
