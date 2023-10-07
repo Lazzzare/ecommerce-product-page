@@ -24,7 +24,7 @@ const TextContent = ({
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 1 }}
     >
-      <div className="p-6">
+      <div className="px-6 pt-6 lg:p-6">
         <div>
           <h3 className="text-[#FF7E1B] text-xs lg:text-[13px] font-bold tracking-[1.846px] lg:tracking-[2px] uppercase">
             Sneaker Company
