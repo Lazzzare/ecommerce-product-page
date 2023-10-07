@@ -59,9 +59,9 @@ const Header = ({
                 return (
                   <li
                     key={index}
-                    className="cursor-pointer text-[#69707D] hover:text-[#1D2026] leading-6"
+                    className="relative cursor-pointer text-[#69707D] leading-6"
                   >
-                    {item}
+                    <a>{item}</a>
                   </li>
                 );
               })}
