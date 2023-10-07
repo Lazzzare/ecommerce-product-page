@@ -16,6 +16,7 @@ interface Props {
   cartButton: (hasItems: boolean) => boolean;
   cartButtonClicked: boolean;
   setCartButtonClicked: (e: boolean) => void;
+  menuItemsArray: string[];
 }
 
 const Header = ({
@@ -26,9 +27,9 @@ const Header = ({
   cartButton,
   cartButtonClicked,
   setCartButtonClicked,
+  menuItemsArray,
 }: Props) => {
   const [cartMenu, setCartMenu] = useState(false);
-  const menuItemsArray = ["Collections", "Men", "Women", "About", "Contact"];
   return (
     <>
       <div className="flex flex-row justify-between px-6 lg:px-[165px] pt-5 lg:pt-11 pb-7 lg:pb-11">
@@ -39,7 +40,9 @@ const Header = ({
               onClick={() => setMobileMenu(!MobileMenu)}
               src={Close}
               alt="Close"
-              className="lg:hidden cursor-pointer z-50"
+              className={`lg:hidden cursor-pointer ${
+                MobileMenu ? "z-[1000]" : null
+              }`}
             />
           ) : (
             <img
