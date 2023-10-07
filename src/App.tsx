@@ -41,15 +41,15 @@ const App = () => {
         <>
           <div className="fixed lg:hidden bg-[#000] left-0 opacity-75 top-0 w-full h-screen z-[998]"></div>
           <div className="fixed lg:hidden bg-white top-0 left-0 w-[300px] h-screen z-[999]">
-            <div className="fixed m-0 w-[300px] h-full bg-white">
+            <div className="header fixed m-0 w-[300px] h-full bg-white">
               <ul className="absolute top-20 left-[25px] space-y-5">
                 {menuItemsArray.map((item, index) => {
                   return (
                     <li
                       key={index}
-                      className="cursor-pointer text-[#1D2026] hover:text-[#69707D] leading-6 font-bold text-lg"
+                      className="cursor-pointer text-[#1D2026] leading-6 font-bold text-lg"
                     >
-                      {item}
+                      <a>{item}</a>
                     </li>
                   );
                 })}
