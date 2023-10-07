@@ -6,6 +6,7 @@ import Delete from "../assets/icon-delete.svg";
 import BuyProduct from "../assets/image-product-1.jpg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState } from "react";
+import { motion } from "framer-motion";
 
 interface Props {
   MobileMenu: boolean;
@@ -80,69 +81,70 @@ const Header = ({
           {cartMenu ? (
             // CartMenu
             <div className="cart_menu z-10 absolute lg:top-16 lg:-left-40 top-20 -left-[275px] w-[360px] h-[256px]">
-              <h2 className="p-6 text-[#1D2026] font-bold">Cart</h2>
-              <hr className="h-[1px] text-[#E4E9F2]" />
-              {cartButtonClicked ? (
-                cartButton(amount > 0) === true ? (
-                  <div className="p-4 items-center justify-center">
-                    <div className="flex flex-row">
-                      <img
-                        src={BuyProduct}
-                        alt="BuyProduct"
-                        className="w-[50px] h-[50px] rounded"
-                      />
-                      <div className="ml-4">
-                        <h2 className="text-[#69707D] leading-[26px]">
-                          Fall Limited Edition Sneakers
-                        </h2>
-                        <div className="flex flex-row gap-1">
-                          <h3 className="text-[#69707D] leading-[26px]">
-                            $125.00 x {amount}
-                          </h3>
-                          <h4 className="text-[#1D2026] font-bold leading-[26px]">
-                            {`${125 * amount}.00 $`}
-                          </h4>
+              <motion.div
+                initial={{ opacity: 0, y: -200 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+              >
+                <div>
+                  <h2 className="p-6 text-[#1D2026] font-bold">Cart</h2>
+                  <hr className="h-[1px] text-[#E4E9F2]" />
+                  {cartButtonClicked ? (
+                    cartButton(amount > 0) === true ? (
+                      <div className="p-4 items-center justify-center">
+                        <div className="flex flex-row">
+                          <img
+                            src={BuyProduct}
+                            alt="BuyProduct"
+                            className="w-[50px] h-[50px] rounded"
+                          />
+                          <div className="ml-4">
+                            <h2 className="text-[#69707D] leading-[26px]">
+                              Fall Limited Edition Sneakers
+                            </h2>
+                            <div className="flex flex-row gap-1">
+                              <h3 className="text-[#69707D] leading-[26px]">
+                                $125.00 x {amount}
+                              </h3>
+                              <h4 className="text-[#1D2026] font-bold leading-[26px]">
+                                {`${125 * amount}.00 $`}
+                              </h4>
+                            </div>
+                          </div>
+                          <img
+                            src={Delete}
+                            alt="Delete"
+                            className="w-[14px] h-[16px] mt-4 ml-5 cursor-pointer"
+                            onClick={() => {
+                              setCartButtonClicked(!cartButton);
+                              setAmount(0);
+                            }}
+                          />
+                        </div>
+                        <div className="items-center mx-auto flex justify-center mt-6">
+                          <button
+                            onClick={() => {
+                              alert(`You Buy ${amount} Sneakers Product`);
+                              setCartButtonClicked(false);
+                              setAmount(0);
+                            }}
+                            className="w-full bg-[#FF7E1B] rounded-[10px] text-white font-bold pt-[18px] pb-[18px] hover:bg-[#d37f3f]"
+                          >
+                            Checkout
+                          </button>
                         </div>
                       </div>
-                      <img
-                        src={Delete}
-                        alt="Delete"
-                        className="w-[14px] h-[16px] mt-4 ml-5 cursor-pointer"
-                        onClick={() => {
-                          setCartButtonClicked(!cartButton);
-                          setAmount(0);
-                        }}
-                      />
-                    </div>
-                    <div className="items-center mx-auto flex justify-center mt-6">
-                      <button
-                        onClick={() => {
-                          alert(`You Buy ${amount} Sneakers Product`);
-                          setCartButtonClicked(false);
-                          setAmount(0);
-                        }}
-                        className="w-full bg-[#FF7E1B] rounded-[10px] text-white font-bold pt-[18px] pb-[18px] hover:bg-[#d37f3f]"
-                      >
-                        Checkout
-                      </button>
-                    </div>
-                  </div>
-                ) : (
-                  <h1
-                    className="absolute flex justify-center items-center mx-auto top-1/2 left-[30%]
-                  text-[#69707D] font-bold leading-7"
-                  >
-                    Your cart is empty.
-                  </h1>
-                )
-              ) : (
-                <h1
-                  className="absolute flex justify-center items-center mx-auto top-1/2 left-[30%]
-              text-[#69707D] font-bold leading-7"
-                >
-                  Your cart is empty.
-                </h1>
-              )}
+                    ) : null
+                  ) : (
+                    <h1
+                      className="absolute flex justify-center items-center mx-auto top-1/2 left-[30%]
+                      text-[#69707D] font-bold leading-7"
+                    >
+                      Your cart is empty.
+                    </h1>
+                  )}
+                </div>
+              </motion.div>
             </div>
           ) : null}
           <img
