@@ -9,6 +9,36 @@
   box-shadow: 0px 20px 50px -20px rgba(29, 32, 38, 0.5);
 }
 
+.header {
+  position: relative;
+}
+
+ul li a {
+  position: relative;
+  margin: auto;
+}
+
+ul li a::after {
+  content: "";
+  position: absolute;
+  bottom: -60px;
+  left: 0;
+  width: 0;
+  height: 4px;
+  background-color: #ff7e1b;
+  transition: 0.4s ease;
+}
+
+@media only screen and (max-width: 600px) {
+  ul li a::after {
+    bottom: -6px;
+  }
+}
+
+ul li a:hover::after {
+  width: 100%;
+}
+
 @layer base {
   html {
     font-family: "Kumbh Sans", sans-serif;
