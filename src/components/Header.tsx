@@ -7,6 +7,7 @@ import BuyProduct from "../assets/image-product-1.jpg";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Swal from "sweetalert2";
 
 interface Props {
   MobileMenu: boolean;
@@ -127,7 +128,18 @@ const Header = ({
                         <div className="items-center mx-auto flex justify-center mt-6">
                           <button
                             onClick={() => {
-                              alert(`You Buy ${amount} Sneakers Product`);
+                              Swal.fire({
+                                title: `You Buy ${amount} Sneakers Product`,
+                                width: 600,
+                                padding: "3em",
+                                color: "#edebeb",
+                                background: `url(https://media.tenor.com/T9seei18FiYAAAAC/cowboy-boots-rattlesnake-boots.gif) center no-repeat`,
+                                backdrop: `
+                                  rgba(0, 0, 0, 0.4)
+                                  left top
+                                  no-repeat
+                                `,
+                              });
                               setCartButtonClicked(false);
                               setAmount(0);
                             }}
@@ -137,7 +149,14 @@ const Header = ({
                           </button>
                         </div>
                       </div>
-                    ) : null
+                    ) : (
+                      <h1
+                        className="absolute flex justify-center items-center mx-auto top-1/2 left-[30%]
+                      text-[#69707D] font-bold leading-7"
+                      >
+                        Your cart is empty.
+                      </h1>
+                    )
                   ) : (
                     <h1
                       className="absolute flex justify-center items-center mx-auto top-1/2 left-[30%]
