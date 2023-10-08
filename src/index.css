@@ -3,6 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Add this CSS to your stylesheet */
+.image-container img {
+  transition: opacity 0.3s ease-in-out;
+}
+
+.image-container img:hover {
+  opacity: 0.8;
+}
+
 .cart_menu {
   border-radius: 10px;
   background: #fff;
