@@ -9,7 +9,6 @@ const App = () => {
   const [cartButtonClicked, setCartButtonClicked] = useState(false);
 
   const menuItemsArray = ["Collections", "Men", "Women", "About", "Contact"];
-
   const cartButton = (): boolean => {
     return amount > 0;
   };
