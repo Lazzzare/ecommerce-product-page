@@ -41,7 +41,7 @@ const FullScreenImage: React.FC<FullScreenImageProps> = ({
     <>
       {fullScreenImage ? (
         <>
-          <div className="fixed bg-[#000] left-0 opacity-75 top-0 w-full h-screen z-[998]"></div>
+          <div className="fixed inset-0 flex items-center justify-center bg-[#000] left-0 opacity-75 top-0 w-full h-screen z-[998]"></div>
           <div className="absolute top-[20%] left-[35%] flex flex-col gap-y-10 justify-center mx-auto items-center z-[999]">
             <div className="absolute items-center top-[38%]">
               {/* PreviousImageClick */}
